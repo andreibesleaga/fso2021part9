@@ -48,7 +48,8 @@ const toNewPatientEntry = ({ name, dateOfBirth, ssn, gender, occupation }) => {
         dateOfBirth: parseDate(dateOfBirth),
         ssn: parseSSN(ssn),
         gender: parseGender(gender),
-        occupation: parseOccupation(occupation)
+        occupation: parseOccupation(occupation),
+        entries: [{ type: "HealthCheck", "healthCheckRating": 0, id: '', description: '', date: '', specialist: '' }]
     };
     return newEntry;
 };

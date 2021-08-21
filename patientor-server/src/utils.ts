@@ -1,4 +1,4 @@
-import { PatientEntry, Gender } from './types';
+import { Patient, Gender } from './types';
 import {v1 as uuid} from 'uuid';
 
 const isString = (text: unknown): text is string => {
@@ -51,18 +51,20 @@ const parseDate = (date: unknown): string => {
 
 type Fields = { name : unknown, dateOfBirth: unknown, ssn: unknown, gender: unknown, occupation: unknown };
 
-const toNewPatientEntry = ({ name, dateOfBirth, ssn, gender, occupation } : Fields): PatientEntry => {
+const toNewPatientEntry = ({ name, dateOfBirth, ssn, gender, occupation } : Fields): Patient => {
 
-  const newEntry: PatientEntry = {
+  const newEntry: Patient = {
     id: uuid(),
     name: parseName(name),
     dateOfBirth: parseDate(dateOfBirth),
     ssn: parseSSN(ssn),
     gender: parseGender(gender),
-    occupation: parseOccupation(occupation)
+    occupation: parseOccupation(occupation),
+    entries: [ {type:"HealthCheck", "healthCheckRating":0,  id: '',  description: '',  date: '', specialist: ''} ]
   };
 
   return newEntry;
 };
+
 
 export default toNewPatientEntry;

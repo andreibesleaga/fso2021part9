@@ -10,6 +10,15 @@ const patientsRouter = express_1.default.Router();
 patientsRouter.get('/api/patients', (_req, res) => {
     res.send(patientsService_1.default.getEntries());
 });
+patientsRouter.get('/api/patients/:id', (req, res) => {
+    const patient = patientsService_1.default.findById(req.params.id);
+    if (patient) {
+        res.send(patient);
+    }
+    else {
+        res.sendStatus(404);
+    }
+});
 patientsRouter.post('/api/patients', (_req, res) => {
     try {
         const newPatientEntry = utils_1.default(_req.body);
@@ -18,6 +27,7 @@ patientsRouter.post('/api/patients', (_req, res) => {
     }
     catch (e) {
         res.status(400).send(e.message);
+        console.log(e.message);
     }
 });
 exports.default = patientsRouter;
