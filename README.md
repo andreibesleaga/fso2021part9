@@ -1,2 +1,2 @@
-# fso2021part9
+# Full Stack Open 2021 - 9
 TypeScript
